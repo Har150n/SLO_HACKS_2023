@@ -1,5 +1,5 @@
 import tkinter as tk
-
+import upload
 def create_game_window(root_home):
     # Hide the current window
     root_home.withdraw()
@@ -18,6 +18,7 @@ def create_game_window(root_home):
     label.pack(pady=10)
 
 def create_photos_window(root_home):
+    images = upload.prompt_upload()
     # Hide the current window
     root_home.withdraw()
     

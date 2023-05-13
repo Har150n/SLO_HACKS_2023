@@ -4,6 +4,19 @@ class Game:
         self.levels = levels           #List[Level] -> List of Level Objects
         self.level_index = level_index #int -> current level number
 
+    def populateLevels(self):
+        #DUMMY DATA
+        level_1_images = {"happy.jpg": "happy", "sad.jpg": "sad"}
+        level_1 = Level(1, level_1_images)
+        self.levels = [level_1]
+
+
+        #get DeepFace processing data
+        # image_dict = {}
+        # for level in self.levels:
+        #     #add level classifying later
+        #     level.images = image_dict
+
 
     def restart(self):
         self.score = 0
