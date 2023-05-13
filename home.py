@@ -7,8 +7,19 @@ windows = {}
 # Create home path
 root_home = tk.Tk()
 root_home.title("EMO Quest")
-root_home.geometry("1000x900")
 windows["root_home"] = root_home
+
+# Get the screen width and height
+screen_width = root_home.winfo_screenwidth()
+screen_height = root_home.winfo_screenheight()
+
+# Set the window size and position
+window_width = int(screen_width)
+window_height = int(screen_height)
+window_x = int((screen_width - window_width) / 2)
+window_y = int((screen_height - window_height) / 2)
+
+root_home.geometry(f"{window_width}x{window_height}+{window_x}+{window_y}")
 
 # Create a frame for the navigation bar
 navbar_frame = tk.Frame(root_home, bg="lightblue", height=30)
