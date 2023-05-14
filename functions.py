@@ -9,7 +9,7 @@ def create_game_window(root_home, windows):
 
     # Hide the current window
     for window_name, window in windows.items():
-        if window_name != "game_window":
+        if window_name != "game_window" and window.winfo_exists():
             window.withdraw()
 
     screen_width = game_window.winfo_screenwidth()
@@ -40,11 +40,15 @@ def create_game_window(root_home, windows):
     # Add a play Game button
     button_game = tk.Button(navbar_frame, text="Play Game", font=("Times", 20))
     button_game.pack(side=tk.RIGHT)
-
     
     # Add widgets to the new window
     label = tk.Label(game_window, text="This is the new window!")
     label.pack(pady=10)
+
+    # Add Logo
+    game_window.logo_image = tk.PhotoImage(file="EMO_logo.png").subsample(2)
+    label = tk.Label(game_window, image=game_window.logo_image)
+    label.place(relx=1.0, rely=1.0, anchor=tk.SE)
 
 def create_photos_window(root_home, windows):
     # Create a new window
@@ -55,7 +59,7 @@ def create_photos_window(root_home, windows):
 
     # Hide the current window
     for window_name, window in windows.items():
-        if window_name != "photos_window":
+        if window_name != "photos_window" and window.winfo_exists():
             window.withdraw()
 
     screen_width = photos_window.winfo_screenwidth()
@@ -90,3 +94,8 @@ def create_photos_window(root_home, windows):
     # Add widgets to the new window
     label = tk.Label(photos_window, text="This is the new photo window!")
     label.pack(pady=10)
+
+    # Add Logo
+    photos_window.logo_image = tk.PhotoImage(file="EMO_logo.png").subsample(2)
+    label = tk.Label(photos_window, image=photos_window.logo_image)
+    label.place(relx=1.0, rely=1.0, anchor=tk.SE)

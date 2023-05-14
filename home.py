@@ -41,8 +41,17 @@ button_game.pack(side=tk.RIGHT)
 main_frame = tk.Frame(root_home)
 main_frame.pack(fill=tk.BOTH, expand=True)
 
+# Add empty label for padding
+padding_label = tk.Label(main_frame, height=10)
+padding_label.pack()
+
 # Add a label for the heading
-heading_label = tk.Label(main_frame, text="Welcome to EMO Quest", font=("Times", 60))
+heading_label = tk.Label(main_frame, text="Welcome to EMO Quest", font=("Helvetica", 60))
 heading_label.pack()
+
+# Add Logo
+image = tk.PhotoImage(file="EMO_logo.png")
+label = tk.Label(root_home, image=image)
+label.pack()
 
 root_home.mainloop()
