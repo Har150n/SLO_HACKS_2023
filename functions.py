@@ -1,6 +1,8 @@
 import tkinter as tk
-
+import game
 def create_game_window(root_home, windows):
+    #populate the game images
+    game.populateLevels()
     # Create a new window
     game_window = tk.Toplevel(root_home)
 
