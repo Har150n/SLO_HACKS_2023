@@ -3,6 +3,7 @@ from tkinter import filedialog
 import cv2
 import matplotlib.pyplot as plt
 from deepface import DeepFace
+image_emotions = {}
 
 
 def prompt_upload():
@@ -23,9 +24,16 @@ def prompt_upload():
         plt.imshow(img[:, :, :: -1])    #call fn and use plt object
         plt.show()                      #display image
 
-        result = DeepFace.analyze(img, actions=['emotion']) #store in result
-        print(result)                                       #print it!
-
+        try:
+            result = DeepFace.analyze(img, actions=['emotion']) #store in result
+            dominant_emo = result[0]['dominant_emotion']          #print it!
+            image_emotions[file_path] = dominant_emo #path and dominant emotioin dictionary
+        except Exception as e:
+            print(f"An unexpected error occurred while analyzing {file_path}: {e}")
     # Close the Tkinter window
     root.destroy()
-    return file_paths
+    print(image_emotions)
+
+    return image_emotions
+
+#prompt_upload()
