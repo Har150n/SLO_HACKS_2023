@@ -29,17 +29,17 @@ def create_game_window(root_home, windows):
     navbar_frame = tk.Frame(game_window, bg="lightblue", height=30)
     navbar_frame.pack(side=tk.TOP, fill=tk.X, anchor=tk.NE)
 
-    # Add a back arrow button to the new window
-    back_button = tk.Button(navbar_frame, text="Home", bg="blue", font=("Times", 20), command=lambda: [game_window.destroy(), root_home.deiconify()])
-    back_button.pack(side=tk.LEFT)
+    # Add a play Game button
+    button_game = tk.Button(navbar_frame, text="Play Game", font=("Times", 20))
+    button_game.pack(side=tk.RIGHT)
 
     # Add a upload photos button
     button_photos = tk.Button(navbar_frame, text="Upload Photos", font=("Times", 20), command=lambda:create_photos_window(root_home, windows))
     button_photos.pack(side=tk.RIGHT)
 
-    # Add a play Game button
-    button_game = tk.Button(navbar_frame, text="Play Game", font=("Times", 20))
-    button_game.pack(side=tk.RIGHT)
+    # Add a back arrow button to the new window
+    back_button = tk.Button(navbar_frame, text="Home", bg="blue", font=("Times", 20), command=lambda: [game_window.destroy(), root_home.deiconify()])
+    back_button.pack(side=tk.RIGHT)
     
     # Add widgets to the new window
     label = tk.Label(game_window, text="This is the new window!")
@@ -49,6 +49,7 @@ def create_game_window(root_home, windows):
     game_window.logo_image = tk.PhotoImage(file="EMO_logo.png").subsample(2)
     label = tk.Label(game_window, image=game_window.logo_image)
     label.place(relx=1.0, rely=1.0, anchor=tk.SE)
+
 
 def create_photos_window(root_home, windows):
     # Create a new window
@@ -79,21 +80,29 @@ def create_photos_window(root_home, windows):
     navbar_frame = tk.Frame(photos_window, bg="lightblue", height=30)
     navbar_frame.pack(side=tk.TOP, fill=tk.X, anchor=tk.NE)
 
-    # Add a back arrow button to the new window
-    back_button = tk.Button(navbar_frame, text="Home", bg="blue", font=("Times", 20), command=lambda: [photos_window.destroy(), root_home.deiconify()])
-    back_button.pack(side=tk.LEFT)
+    # Add a play Game button
+    button_game = tk.Button(navbar_frame, text="Play Game", font=("Times", 20), command=lambda:create_game_window(root_home, windows))
+    button_game.pack(side=tk.RIGHT)
 
     # Add a upload photos button
     button_photos = tk.Button(navbar_frame, text="Upload Photos", font=("Times", 20))
     button_photos.pack(side=tk.RIGHT)
 
+    # Add a back arrow button to the new window
+    back_button = tk.Button(navbar_frame, text="Home", bg="blue", font=("Times", 20), command=lambda: [photos_window.destroy(), root_home.deiconify()])
+    back_button.pack(side=tk.RIGHT)
+
+    # Add empty label for padding
+    padding_label = tk.Label(photos_window, height=8)
+    padding_label.pack()
+
+    # Add a label for the heading
+    heading_label = tk.Label(photos_window, text="Upload A Collection of Pictures", font=("Helvetica", 60))
+    heading_label.pack()
+
     # Add a play Game button
-    button_game = tk.Button(navbar_frame, text="Play Game", font=("Times", 20), command=lambda:create_game_window(root_home, windows))
-    button_game.pack(side=tk.RIGHT)
-    
-    # Add widgets to the new window
-    label = tk.Label(photos_window, text="This is the new photo window!")
-    label.pack(pady=10)
+    button_addPhotos = tk.Button(photos_window, text="Click here to upload", font=("Times", 20))
+    button_addPhotos.pack()
 
     # Add Logo
     photos_window.logo_image = tk.PhotoImage(file="EMO_logo.png").subsample(2)
