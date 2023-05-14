@@ -1,4 +1,6 @@
-import upload
+import home
+import game
 
-#gets images from player
-file_paths = upload.prompt_upload()
+game = game.Game(0,0)
+
+home.create_homepage()
