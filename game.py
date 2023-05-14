@@ -1,53 +1,44 @@
+import upload
+
 class Game:
-    MINIMUM_CORRECT = 20
-    def __init__(self, score, level,progress_bar, level_index=0, q_index=0):
-        self.score = score             #int -> number of correct answers for the level
-        self.level = level          #List[Level] -> List of Level Objects
-        self.level_index = level_index #int -> current level number
-        self.q_index = q_index         #int -> total questions asked
-        self.progress_bar = progress_bar #int -> percentage progress to display
 
+    score = 0               #number of correct answers for the level
+    levels = []             #List[Level] -> List of Level Objects
+    level_index = 0
+    q_index = 0
+    progress_bar = 0
 
-    def populateLevels(self):
-        #DUMMY DATA
-        # level_1_images = {"happy.jpg": "happy", "sad.jpg": "sad"}
-        # level_1 = Level(1, level_1_images)
-        # self.levels = [level_1]
+def populateLevels():
+    emotions = upload.prompt_upload()   #dictionary of (image, emotion)
+    levelOne = Level(1,emotions, 0)
+    Game.levels.append(levelOne)
 
-        #get DeepFace processing data
-        # image_dict = {}
-        # for level in self.levels:
-        #     #add level classifying later
-        #     level.images = image_dic
-        pass
+#checks the answer against the correct emotion
+def checkAnswer(imageName, answer, levels, level_index):
+    level = levels[level_index]
+    Game.q_index += 1
+    if level.images[imageName] == answer:
+        Game.score += 1
 
-    #checks the answer against the correct emotion
-    def checkAnswer(self, imageName, answer):
-        level = self.level[self.level_index]
-        self.q_index += 1
-        if level.images[imageName] == answer:
-            self.score += 1
-            #self.ans_streak += 1 (if time)
-
-            #update progress bar
-            if self.q_index <= 20:
-                self.progress_bar = self.score/20
-            else:
-                self.progress_bar = self.score/self.q_index
-
-            # check level up: minimum questions reached and at least 80% progress bar
-            if self.q_index >= 20 and self.score/self.q_index >= 0.8:
-                self.level_index += 1
-                self.restart()
-
-            return True
+        #update progress bar
+        if Game.q_index <= 20:
+            Game.progress_bar = Game.score/20
         else:
-            return False
+            Game.progress_bar = Game.score/Game.q_index
+
+        # check level up: minimum questions reached and at least 80% progress bar
+        if Game.q_index >= 20 and Game.score/Game.q_index >= 0.8:
+            Game.level_index += 1
+            restart()
+
+        return True
+    else:
+        return False
 
 
-    def restart(self):
-        self.score = 0
-        self.level_index = 0
+def restart():
+    Game.score = 0
+    Game.q_index = 0
 
 
 
